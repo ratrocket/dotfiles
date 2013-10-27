@@ -1,3 +1,6 @@
+dotfiles
+--------
+
 * dotfiles/install
 
 Plumbing to install dotfiles in a new environment.
