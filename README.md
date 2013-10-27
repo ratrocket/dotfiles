@@ -18,4 +18,4 @@ plumbing for dotfiles)
 * dotfiles/ignore
 
 A gitignored directory, put private &/or local stuff in here.  I use it for
-generating dotfiles from dotfile templates.
+generating dotfiles from templates.
