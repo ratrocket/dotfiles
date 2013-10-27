@@ -1,0 +1,52 @@
+#!/usr/bin/env ruby
+
+require File.join(__FILE__, '..', './trollop.rb')
+
+# trollop: http://trollop.rubyforge.org/
+opts = Trollop::options do
+  opt :dir, 'Directory from which to search', :default => '.', :short => '-d'
+  opt :files_only, 'Only print filenames', :short => '-f'
+  opt :case_sensitive, 'Search case sensitively', :short => '-c'
+end
+
+if ARGV.size < 1
+  STDERR.puts("Give me a search term")
+  exit(1)
+end
+
+Dir.chdir(opts[:dir]) do
+  case_sensitive_grep_switch = opts[:case_sensitive] ? '' : '-i'
+
+  results = `find . -print |
+             grep -v '\.svn' |
+             grep -v '/log/' |
+             sed 's/ /\\ /g' |
+             xargs grep -E #{case_sensitive_grep_switch} #{ARGV.first}`
+             #xargs grep -i #{ARGV.first}`
+
+  opts[:dir] = opts[:dir].chop if opts[:dir].match(/\/$/)
+
+  if opts[:files_only]
+    results.each_line.map { |l| l.split(':').first.sub(/^\./, opts[:dir]) }.
+      sort.uniq.each { |l| puts l }
+  else
+    results.each_line do |line|
+      puts line.sub(/^\./, opts[:dir])
+    end
+  end
+end
+
+__END__
+
+###
+### used to be
+###
+
+#!/bin/sh
+
+find . -print | grep -v '\.svn' | grep -v '/log/' | sed 's/ /\\ /g' | xargs grep -i $1
+# if you want non-`-i` behavior
+#find . -print | grep -v '\.svn' | grep -v '/log/' | sed 's/ /\\ /g' | xargs grep $1
+
+#find . -print | grep -v '\.svn' | grep -v '/log/' | xargs grep -i $1
+#find . \( \! -name '*svn*' -and \! -name '*log/*' \) -print0 | xargs -0 grep -i $1

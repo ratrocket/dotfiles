@@ -1,0 +1,21 @@
+#!/usr/bin/perl -w
+# Read stdin, randomly shuffle lines from input, write to stdout
+
+while (<>) {
+	push(@lines, $_);
+}
+#@reordered = shuffle(\@lines);
+shuffle(\@lines);
+foreach (@lines) {
+	print $_;
+}
+
+sub shuffle {
+	my $array = shift;
+	my $i;
+	for ($i = @$array; --$i; ) {
+		my $j = int rand ($i + 1);
+		next if $i == $j;
+		@$array[$i,$j] = @$array[$j,$i];
+	}
+}

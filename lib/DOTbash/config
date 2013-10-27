@@ -1,0 +1,9 @@
+# Enable the builtin emacs(1) command line editor in sh(1),
+# e.g. C-a -> beginning-of-line.
+set -o emacs
+set -o ignoreeof
+set -o noclobber
+set show-all-if-ambiguous on
+
+# prompt is set in prompt_command function (which is slow, but fine)
+PROMPT_COMMAND=prompt_command

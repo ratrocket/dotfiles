@@ -1,0 +1,4 @@
+#!/bin/sh
+# sockstat broken in darwin8/tiger.  Use one of:
+# lsof -i6/lsof -i4/lsof -U
+lsof -i4

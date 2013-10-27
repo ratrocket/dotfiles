@@ -1,0 +1,7 @@
+*.swp
+/ignore
+/work
+/lib/DOTey-cloud.yml
+/lib/DOTeyrc
+/lib/DOTgitconfig
+/lib/DOTnetrc

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+. ../ignore/DOTFILE_ENV
+
+[[ -z $DF_EY_CLOUD_API ||            \
+   -z $DF_EY_CLOUD_MAIN_RECIPES ||   \
+   -z $DF_EY_CLOUD_AWS_SECRET_KEY || \
+   -z $DF_EY_CLOUD_AWS_SECRET_ID ]] && { echo "vars not set"; exit -1; }
+
+cat <<EOF
+--- 
+:api: $DF_EY_CLOUD_API
+:main_recipes: $DF_EY_CLOUD_MAIN_RECIPES
+:keep: 5
+:aws_secret_key: $DF_EY_CLOUD_AWS_SECRET_KEY
+:aws_secret_id: $DF_EY_CLOUD_AWS_SECRET_ID
+EOF

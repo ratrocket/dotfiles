@@ -1,0 +1,12 @@
+#! /bin/sh
+
+for x
+do
+	echo "Converting $x"
+	tr -d '\015' < "$x" > "$x.new"
+done
+
+# 11/27/2006: This isn't safe in general, and could be really unsafe if
+# the file you're converting isn't in the current dir.  Think about
+# it...
+rename 's/\.new$//' *.new    #replace .new with nothing

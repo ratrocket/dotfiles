@@ -1,0 +1,46 @@
+" load pathogen right away
+call pathogen#infect()
+
+set showmatch
+set ruler
+set showcmd
+filetype plugin indent on
+set textwidth=72
+set enc=utf-8
+set hlsearch
+" don't back up over eol or start of insert
+" "normally" set as "set backspace=indent,eol,start"
+set backspace=indent
+syntax on
+
+" don't clear the screen on exit
+set t_ti= t_te=
+
+" Vi style cw (ie, with $ at end of text to be changed)
+set cpoptions+=$
+
+source $HOME/.vim/abbrev
+
+" F2 copies line to clipboard; in visual mode it grabs all selected text
+" (of course, only  on a mac...)
+nmap <F2> :.w !pbcopy<CR><CR>
+vmap <F2> :w !pbcopy<CR><CR>
+
+" 'quote' a word
+nnoremap qw :silent! normal mpea'<Esc>bi'<Esc>`pl
+" "quote" a word
+nnoremap qd :silent! normal mpea"<Esc>bi"<Esc>`pl
+" remove quotes from a word
+"nnoremap wq :silent! normal mpeld bhd `ph<CR>
+
+au FileType crontab set nobackup nowritebackup
+let g:slime_target = "tmux"
+
+" get .html.erb files to be somewhat correct 7/20/2012
+" via: http://stackoverflow.com/q/4764507
+" indenting isn't *quite* right, but fine for now
+autocmd BufRead,BufNewFile *.erb set filetype=eruby.html
+
+" buffer help (not really needed...)
+" cf. http://vim.wikia.com/wiki/Easier_buffer_switching
+"nnoremap <F5> :buffers<CR>:buffer<Space>

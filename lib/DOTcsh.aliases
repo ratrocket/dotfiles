@@ -1,0 +1,26 @@
+# Useful aliases; sourced from $HOME/.cshrc
+
+alias ll 'ls -lF'
+alias la 'ls -a'
+alias ls 'ls -F'
+alias less 'less -X'
+alias m less
+alias pu 'pushd -v'
+alias po 'popd -v'
+alias d 'dirs -v'
+alias whcih which
+alias ctags exctags  # Always use Exuberant Ctags, what else?
+# could call this 'mathdvi' b/c I set these to display math hw
+alias xdvi 'xdvi -expert -s 7 -thorough -geometry 726x950 -keep'
+
+# "Five letters is three too many."
+alias wh which
+alias sl ls
+alias bc 'bc -q'
+alias ll-ascend 'ls -l | sed 1d | sort -n +4 -5'
+
+# The paranoid section
+alias cp 'cp -i'
+alias rm 'rm -i'
+alias mv 'mv -i'
+alias scp 'scp -p'	# preserve file attributes

@@ -1,0 +1,18 @@
+# this is the wrong syntax for inputrc; this is from bashrc....
+#bind '"\M-[A":history-search-backward'
+#bind '"\M-[B":history-search-forward'
+
+set show-all-if-ambiguous on
+set bell-style none
+
+# this is to try to get utf8 "workflow" in Terminal when using bash
+# from: http://n00.be/archives/category/howtos/
+set meta-flag on
+set convert-meta off
+set input-meta on
+set output-meta on
+
+# note also setting "export LC_ALL=XXXX.something" in .bash_profile
+
+"\e[A": history-search-backward
+"\e[B": history-search-forward

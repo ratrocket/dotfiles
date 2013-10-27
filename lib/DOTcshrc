@@ -1,0 +1,74 @@
+# $FreeBSD: src/share/skel/dot.cshrc,v 1.10.2.3 2001/08/01 17:15:46 obrien Exp $
+#
+# .cshrc - csh resource script, read at beginning of execution by each shell
+#
+# see also csh(1), environ(7).
+#
+
+#stty erase 
+
+alias h		history 25
+alias j		jobs -l
+
+source ~/.csh.aliases
+
+# A righteous umask
+umask 22
+
+set path = (/bin /sbin /usr/bin /usr/sbin /usr/local/sbin /usr/local/bin /usr/X11R6/bin $HOME/bin)
+
+setenv	EDITOR	vim
+setenv  VISUAL  vim
+setenv	PAGER	'less -X'
+setenv	BLOCKSIZE	K
+#setenv  TERM    xterm-color # this doesn't work when in console mode
+			    # when TERM should be cons25.  How to fix?
+setenv CVS_RSH		ssh
+setenv CVSEDITOR	vi
+
+if ($?prompt) then
+	# An interactive shell -- set some stuff up
+	set filec
+	set autolist=ambiguous
+	# set nobeep will disable the tcsh terminal beep
+	set ignoreeof
+	set noclobber
+	set fignore=(.o .class \~)
+	set history = 500
+	set savehist = 500
+
+	if ( $?tcsh ) then
+		alias ls ls-F
+		set correct = cmd
+		#set prompt = '%U%B%{\033[46m%}%T%{\033[0m%} %n@%m:%c03 %%%u%b '
+		# Just *try* to figure out the "ansi color escape codes" used
+		#    to create this magic (hint: search on above phrase).
+		#set prompt = '%U%B%{\033[37m%}%{\033[40m%}[%m]%{\033[0m%}%{\033[0m%} %n:%c03 %%%u%b '
+		#set prompt = '%U%B%S[%m]%s %n:%c03 %%%u%b '
+		set prompt = '%U%B%S[%n@%m]%s:%c03 %%%u%b '
+
+		#set rprompt = '%d %w %D %B%?%b' # %h is history#, %? is retval
+		#set rprompt = '%U%d %W/%D[r:%B%?%b|j:%B%j%b]%u'
+		set rprompt = '%U%B%T %d %W/%D%u%b'
+		# Now for reverse video
+		#set prompt = '%B%{\033[7m%}[%T] :%~: %%%b%{\033[0m%} '
+
+		set rmstar
+		set wordchars = '*?_-[]~=|&' # added '|' so pipes can be
+					     # alt-bckspc'ed
+					     # and '&'
+		set savehist = ( 500 merge )
+		bindkey "^R" i-search-back
+		bindkey "^W" backward-delete-word
+		bindkey -k up history-search-backward
+		bindkey -k down history-search-forward
+
+		source "$HOME/.csh.complete"
+	endif
+endif
+
+# My NOTES:
+# Set ignoreeof so ^D doesn't auto log out
+# Set rmstar to be prompted when invoking 'rm *'
+# Set 'set correct = cmd' for spelling correction on command names
+# Set history vars: history = n; savehist; or savehist = ( n merge )

@@ -1,0 +1,61 @@
+alias ls='ls -F'
+alias ll='ls -lF'
+alias la='ls -a'
+alias sl=ls
+
+alias less='less -X'
+alias m='less -X'
+
+alias pu='pushd-v' # this & next are shell functions defined below
+alias po='popd-v'
+alias d='dirs -v'
+
+alias h='fc -l'  # explore fc (`help fc`)
+alias j=jobs
+
+alias bc='bc -q'
+alias spinner='spinner -T' # for some linux boxes
+
+# The paranoid section
+alias cp='cp -i'
+alias mv='mv -i'
+alias scp='scp -p' # preserve file attributes
+#alias rm='rm -i'  # got tired of this
+
+# Hmm.
+#alias git-unpushed-changes="git log origin/master..HEAD"
+
+#
+# Csh compatability:
+#
+
+# "repeat" command.  Like:
+#
+#	repeat 10 echo foo
+repeat ()
+{ 
+    local count="$1" i;
+    shift;
+    for i in $(seq 1 "$count");
+    do
+        eval "$@";
+    done
+}
+
+# Subfunction needed by `repeat'.
+# OS X at least seems to have seq now (also has jot, so...)
+# Could define this conditionally based on output of `which seq`.
+# But how often do I use repeat?  Maybe I should use it more??
+#seq ()
+#{ 
+#    local lower upper output;
+#    lower=$1 upper=$2;
+#
+#    if [ $lower -ge $upper ]; then return; fi
+#    while [ $lower -le $upper ];
+#    do
+#	echo -n "$lower "
+#        lower=$(($lower + 1))
+#    done
+#    echo "$lower"
+#}

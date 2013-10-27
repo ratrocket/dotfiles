@@ -1,0 +1,10 @@
+#!/bin/bash
+
+. ../ignore/DOTFILE_ENV
+
+[[ -z $DF_EYRC_API_TOKEN ]] && { echo "vars not set"; exit -1; }
+
+cat <<EOF
+--- 
+api_token: $DF_EYRC_API_TOKEN
+EOF

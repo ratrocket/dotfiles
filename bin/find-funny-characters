@@ -1,0 +1,1 @@
+perl -nwe 'print if /[^[:ascii:]]/'

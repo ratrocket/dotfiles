@@ -1,0 +1,47 @@
+# original via: https://github.com/wsouto/dotfiles
+#
+# ANSI terminal color codes:
+# http://www.termsys.demon.co.uk/vtansi.htm#colors
+#
+# Apparently pry uses something called CodeRay for coloring, so look
+# into that for more advanced(?) color stuff.
+
+Pry.config.editor = "vim"
+
+# this is messing up my prompt... it won't wrap over lines, it
+# wraps over on the same line instead... bogus.
+
+#Pry.config.prompt = proc do |obj, level, _|
+#  prompt = "\e[4m"
+#  prompt << "\e[1;44m"
+#  prompt << "\e[1;37m"
+#  prompt << "#{Rails.version}@" if defined?(Rails)
+#  prompt << "#{RUBY_VERSION}"
+#  "#{prompt} (#{obj}) >\e[0m\e[0m\e[0m "
+#end
+
+Pry.config.prompt = proc do |obj, level, _|
+  #prompt = ""
+  #prompt << "#{Rails.version}@" if defined?(Rails)
+  #prompt << "#{RUBY_VERSION}"
+  prompt = "#{RUBY_VERSION}"
+  "#{prompt} (#{obj}) > "
+end
+
+# for reload!
+if Kernel.const_defined?("Rails") then
+  require File.join(Rails.root,"config","environment")
+  require 'rails/console/app'
+  require 'rails/console/helpers'
+  Pry::RailsCommands.instance_methods.each do |name| 
+    Pry::Commands.command name.to_s do 
+      Class.new.extend(Pry::RailsCommands).send(name)
+    end
+  end
+end
+
+# to get 'app' in rails console
+# http://stackoverflow.com/a/13800826
+require 'rails/console/app'
+extend Rails::ConsoleMethods
+puts 'Rails Console Helpers loaded'

@@ -1,0 +1,7 @@
+keychain id_rsa
+   if (-f $HOME/.keychain/$HOST-csh) then
+           source $HOME/.keychain/$HOST-csh
+   endif
+   if (-f $HOME/.keychain/$HOST-csh-gpg) then
+           source $HOME/.keychain/$HOST-csh-gpg
+   endif

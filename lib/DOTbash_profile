@@ -1,0 +1,14 @@
+#[ -f /etc/profile ] && . /etc/profile
+[ -f $HOME/.bashrc ] && . $HOME/.bashrc
+
+# can this move?
+keychain id_dsa
+. ~/.keychain/`uname -n`-sh
+
+# BELOW moved to ~/.bash/env
+## for utf8 support, also see .inputrc
+#export LC_ALL=en_US.UTF-8
+#
+#export EDITOR="vim"
+#export VISUAL="vim"
+#export PAGER="less -X"

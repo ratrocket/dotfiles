@@ -1,0 +1,8 @@
+#!/opt/local/bin/perl -w
+# 1 mile = 1.6093 km
+# 1 km   = 0.6214 miles
+
+defined($ARGV[0]) or die "usage: <prog> <mi>";
+$mi= shift @ARGV;
+$km = $mi * 1.6093;
+printf("%0.3f\n", $km);

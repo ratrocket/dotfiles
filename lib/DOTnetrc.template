@@ -1,0 +1,15 @@
+#!/bin/bash
+
+. ../ignore/DOTFILE_ENV
+
+[[ -z $DF_NETRC_HEROKU_LOGIN || \
+   -z $DF_NETRC_HEROKU_PASS ]] && { echo "vars not set"; exit -1; }
+
+cat <<EOF
+machine api.heroku.com
+  login $DF_NETRC_HEROKU_LOGIN
+  password $DF_NETRC_HEROKU_PASS
+machine code.heroku.com
+  login $DF_NETRC_HEROKU_LOGIN
+  password $DF_NETRC_HEROKU_PASS
+EOF

@@ -1,0 +1,10 @@
+[ -f $HOME/.bash/env ] && . $HOME/.bash/env
+[ -f $HOME/.bash/funcs ] && . $HOME/.bash/funcs
+[ -f $HOME/.bash/config ] && . $HOME/.bash/config
+[ -f $HOME/.bash/aliases ] && . $HOME/.bash/aliases
+[ -f $HOME/.bash/completion ] && . $HOME/.bash/completion
+[ -f $HOME/.git-completion.sh ] && . $HOME/.git-completion.sh
+
+# move this somewhere?
+# also, check for 'brew' first?  And that completion file exists?
+. `brew --prefix`/Library/Contributions/brew_bash_completion.sh

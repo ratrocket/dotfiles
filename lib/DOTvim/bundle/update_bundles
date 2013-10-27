@@ -1,0 +1,85 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+require 'open-uri'
+
+git_bundles = %w[
+  git://github.com/tpope/vim-fugitive.git
+  git://github.com/tpope/vim-markdown.git
+  git://github.com/tpope/vim-rails.git
+  git://github.com/tpope/vim-surround.git
+  git://github.com/vim-ruby/vim-ruby.git
+  git://github.com/tpope/vim-abolish.git
+  git://github.com/pangloss/vim-javascript.git
+  git://github.com/tsaleh/vim-matchit.git
+  git://github.com/jpalardy/vim-slime.git
+  git://github.com/jnwhiteh/vim-golang.git
+  git://github.com/godlygeek/tabular.git
+]
+
+keeps = %w[
+  README
+  update_bundles
+]
+
+# for me it's best to keep this file in .vim/bundle (wherever that lives; could
+# be home directory, could be a dotfiles repository)
+bundles_dir = File.join(File.dirname(__FILE__))
+
+notrash = ARGV.include?('--notrash')
+
+Dir.chdir(bundles_dir) do
+  puts "Working dir: " + `pwd`
+
+  unless notrash
+    puts "Trashing everything (lookout!)"
+    Dir["*"].each do |d|
+      if keeps.include?(d)
+        puts "  KEEPING: #{d}"
+      else
+        puts "  REMOVING: #{d}"
+        FileUtils.rm_rf d
+      end
+    end
+  end
+
+  git_bundles.each do |url|
+    dir = url.split('/').last.sub(/\.git$/, '')
+    if notrash && File.exists?(dir)
+      puts "  Skipping #{dir}"
+      next
+    end
+    puts "  Unpacking #{url} into #{dir}"
+    `git clone #{url} #{dir}`
+    puts "rm -rf: " + File.join(dir, ".git")
+    FileUtils.rm_rf(File.join(dir, ".git"))
+  end
+end
+
+
+__END__
+# This is useful for non-pathogenized plugins, but I'm not currently using it
+
+vim_org_scripts = [
+  #["IndexedSearch", "7062",  "plugin"],
+  #["gist",          "12732", "plugin"],
+  #["jquery",        "12107", "syntax"],
+  #["bufexplorer",   "12904", "zip"],
+  #["taglist",       "7701",  "zip"],
+]
+
+vim_org_scripts.each do |name, script_id, script_type|
+  local_file = File.join(name, script_type, "#{name}.#{script_type == 'zip' ? 'zip' : 'vim'}")
+  if notrash && File.exists?(local_file)
+    puts "  Skipping #{local_file}"
+    next
+  end
+  puts "  Downloading #{name}"
+  FileUtils.mkdir_p(File.dirname(local_file))
+  File.open(local_file, "w") do |file|
+    file << open("http://www.vim.org/scripts/download_script.php?src_id=#{script_id}").read
+  end
+  if script_type == 'zip'
+    %x(unzip -d #{name} #{local_file})
+  end
+end

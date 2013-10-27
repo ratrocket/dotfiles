@@ -1,0 +1,54 @@
+# this indenting seems dodgy.  Maybe that's a style?
+function pushd-v
+{
+builtin pushd "$@" >/dev/null
+builtin dirs -v
+}
+
+function popd-v
+{
+builtin popd "$@" >/dev/null
+builtin dirs -v
+}
+
+function prompt_command
+{
+pwd_length=20
+
+DIR=`pwd`
+
+echo $DIR | grep "^$HOME" >> /dev/null
+
+if [ $? -eq 0 ]
+then
+  CURRDIR=`echo $DIR | awk -F$HOME '{print $2}'`
+  newPWD="~$CURRDIR"
+
+  if [ $(echo -n $newPWD | wc -c | tr -d " ") -gt $pwd_length ]
+  then
+    newPWD="~/..$(echo -n $PWD | sed -e "s/.*\(.\{$pwd_length\}\)/\1/")"
+  fi
+elif [ "$DIR" = "$HOME" ]
+then
+  newPWD="~"
+elif [ $(echo -n $PWD | wc -c | tr -d " ") -gt $pwd_length ]
+then
+  newPWD="..$(echo -n $PWD | sed -e "s/.*\(.\{$pwd_length\}\)/\1/")"
+else
+  newPWD="$(echo -n $PWD)"
+fi
+
+local BOLD="\033[1m"
+local UNDER="\033[4m"
+local REV="\033[7m"
+local OFF="\033[0m"
+#PS1="\[\033[4m\033[1m\]\A \u@\h: $newPWD \$\[\033[0m\] "
+#PS1="\[\033[4m\033[1m\]\A \[\033[7m\]\u@\h: $newPWD \$\[\033[0m\] "
+#PS1="\[$UNDER$BOLD\]\A \[$REV\]\u@\h:\[$OFF\]\[$UNDER$BOLD\] $newPWD \$\[$OFF\] "
+
+# the whole enchilada: time/username@host/truncated dir/git branch
+#PS1="\[$UNDER$BOLD\]\A \[$REV\]\u@\h:\[$OFF\]\[$UNDER$BOLD\] $newPWD $(__git_ps1 "(%s)")\$\[$OFF\] "
+
+# minimal: no name, no host
+PS1="\[$UNDER$BOLD\]\A\[$UNDER$BOLD\] $newPWD $(__git_ps1 "(%s)")\$\[$OFF\] "
+}

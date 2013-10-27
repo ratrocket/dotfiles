@@ -1,0 +1,25 @@
+#!/bin/bash
+
+. ../ignore/DOTFILE_ENV
+
+[[ -z $DF_GIT_NAME || \
+   -z $DF_GIT_EMAIL ]] && { echo "vars not set"; exit -1; }
+
+cat <<EOF
+[user]
+	name = $DF_GIT_NAME
+	email = $DF_GIT_EMAIL
+[alias]
+	st = status
+	co = checkout
+	lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%Creset' --abbrev-commit"
+	s = "status -sb"
+	d = diff
+	f = "fetch origin"
+[color]
+	diff = auto
+	status = auto
+        branch = auto
+#[diff]
+	#algorithm = patience
+EOF

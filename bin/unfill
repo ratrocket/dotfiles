@@ -1,0 +1,22 @@
+#!/usr/bin/perl -w
+
+# usage: unfill <file> (& redirect output)
+
+# Converts from civilized text to one line per paragraph text (which is
+# sometimes useful).
+#
+# NOTE: - Expects Unix line endings (ie, not CR/LF).
+#         (Use word2unix first if this is a problem.)
+#       - Paragraphs must be separated by blank lines.
+
+while (<>) {
+    if ($_ =~ /[[:graph:]]/) {
+    	chomp($_);
+    	$_ .= " ";
+	s/^\s+//;
+    	print $_;
+    }
+    else {
+	print "\n", $_;
+    }
+}

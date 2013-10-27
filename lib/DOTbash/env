@@ -1,0 +1,15 @@
+# for utf8 support, also see .inputrc
+export LC_ALL=en_US.UTF-8
+
+export EDITOR="vim"
+export VISUAL="vim"
+export PAGER="less -X"
+
+# golang
+export GOPATH=$HOME/devel/go
+#           brew, etc     /  mine   / path / go system      / my go
+#export PATH="/usr/local/bin:$HOME/bin:$PATH:/usr/local/go/bin:$GOPATH/bin"
+export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin:$HOME/bin"
+
+#export PATH="/usr/local/bin:$HOME/.bin:$PATH"
+unset MANPATH
