@@ -17,6 +17,11 @@ template_files()
     ls ../lib/DOT*.template
 }
 
+dot_files()
+{
+    ls -d ../lib/DOT* | grep -v "template$"
+}
+
 ensure_generated_template_files_are_ignored()
 {
     local gitignore="../.gitignore"
@@ -24,8 +29,8 @@ ensure_generated_template_files_are_ignored()
     for template_file in `template_files`
     do
 	# http://tldp.org/LDP/abs/html/string-manipulation.html
-	local file=${template_file#..} # remove "^.."
-	file=${file%\.template}        # remove ".template$"
+	local file=${template_file#..} # remove "^\.\."
+	file=${file%\.template}        # remove "\.template$"
 
 	if ! `grep -lq "^$file$" $gitignore`
 	then
@@ -39,6 +44,16 @@ generate_template_files()
 {
     for template_file in `template_files`
     do
+        local target=${template_file%\.template}
+
+	if [[ -e $target ]]
+	then
+	    # TODO tie into `replace_all` regime
+	    echo "[generate_template_files] $target exists (skipping)"
+        else
+	    echo "[generate_template_files] generating $target"
+	    bash "$template_file" > "$target"
+	fi
     done
 }
 
@@ -51,16 +66,17 @@ install_home()
 #    local excluded=(`basename $0` README.mkd LICENSE TODO.mkd)
 #    replace_all=false
 #
-#    local file
-#    for file in *
-#    do
+    local file
+    for file in `dot_files`
+    do
+        echo $file
 #        if ! element_exists "$file" "${excluded[@]}"
 #        then
 #            local dest_file_name=`basename "$file" .template`
 #            local dest_file_path="$dest_dir/.$dest_file_name"
 #            install_file "$file" "$dest_file_path"
 #        fi
-#    done
+    done
 #
 #    post_install_actions
 }
@@ -131,10 +147,10 @@ install_home()
 #    do
 #        if [[ $i == $elem ]]
 #        then
-#            return 0
+#            return 0  # true
 #        fi
 #    done
-#    return 1
+#    return 1  # false
 #}
 
 #remove()
