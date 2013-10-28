@@ -1,5 +1,22 @@
 dotfiles
 --------
+### Assumptions/etc.
+
+I use bash.
+
+I use vim (& gvim) + pathogen for plugin management.  There's a script
+(dotfiles/lib/DOTvim/bundle/install_bundles) to grab bundles.  I'm
+being lazy and *not* managing the bundles with git submodules.
+
+I use keychain (from the gentoo project... I think?) for key management.
+
+There's some simple templating in here (all written in bash) to put
+private information into dotfiles that need it.  The inspiration
+for my "system" (that's overselling reality...) was stolen from
+https://github.com/jdevera/dotfiles (who I don't know, but thank you!).
+Look at dotfiles/lib/DOT*.template for examples.
+
+### Subdirectories
 
 * dotfiles/install
 
