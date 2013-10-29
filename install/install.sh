@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Unfortunately, the way this is written right now, you have to run it from
 # the directory it's in.  Can't do `./install/install.sh`.
 

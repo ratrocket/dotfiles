@@ -19,7 +19,7 @@ template_files()
 
 dot_files()
 {
-    ls -d ../lib/DOT* | grep -v "template$"
+    ls -d ../lib/DOT* | grep -v "\.template$"
 }
 
 ensure_generated_template_files_are_ignored()
@@ -57,36 +57,48 @@ generate_template_files()
     done
 }
 
+lib_dir()
+{
+    ( cd "$(dirname "$0")" && pwd ) | sed 's_install$_lib_'
+}
+
 # Install the dot files into user's home directory
 install_home()
 {
     pre_install_actions
 
-#    local dest_dir="$HOME"
-#    local excluded=(`basename $0` README.mkd LICENSE TODO.mkd)
-#    replace_all=false
-#
+    local dest_dir="$HOME/staging"
+    [[ ! -d $dest_dir ]] && { echo "create $dest_dir; exiting"; exit 1; }
+
+    replace_all=false
+
     local file
     for file in `dot_files`
     do
-        echo $file
-#        if ! element_exists "$file" "${excluded[@]}"
-#        then
-#            local dest_file_name=`basename "$file" .template`
-#            local dest_file_path="$dest_dir/.$dest_file_name"
-#            install_file "$file" "$dest_file_path"
-#        fi
+	local base_name=`basename $file`
+	local dest_file_name=$(echo $base_name | sed 's/^DOT/./')
+        local dest_file_path="$dest_dir/$dest_file_name"
+	local src_file_path="`lib_dir`/$base_name"
+	# set up for ln -s $src_file_path $dest_file_path
+	#echo $base_name
+	#echo $src_file_path
+	#echo $dest_file_path
+	#echo "----------------"
+        install_file "$src_file_path" "$dest_file_path"
     done
 #
 #    post_install_actions
 }
 
-## Install a file (with replacement confirmation)
-#install_file()
-#{
-#    local file="$1"
-#    local dest_file_path="$2"
-#
+# Install a file (with replacement confirmation)
+install_file()
+{
+    local file="$1"
+    local dest_file_path="$2"
+
+    echo "LINK will be: $dest_file_path"
+    echo "SRC will be:  $file"
+
 #    if [[ -e $dest_file_path ]] || \
 #       [[ -L $dest_file_path ]]		  # Can be a broken symlink
 #    then
@@ -110,7 +122,7 @@ install_home()
 #    else
 #        link_file "$file" "$dest_file_path"
 #    fi
-#}
+}
 
 #replace_file()
 #{
