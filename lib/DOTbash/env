@@ -5,11 +5,8 @@ export EDITOR="vim"
 export VISUAL="vim"
 export PAGER="less -X"
 
-# golang
 export GOPATH=$HOME/devel/go
-#           brew, etc     /  mine   / path / go system      / my go
-#export PATH="/usr/local/bin:$HOME/bin:$PATH:/usr/local/go/bin:$GOPATH/bin"
-export PATH="$PATH:/usr/local/go/bin:$GOPATH/bin:$HOME/bin"
+# ignore default $PATH set my own
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:$GOPATH/bin:/Users/sdf/bin"
 
-#export PATH="/usr/local/bin:$HOME/.bin:$PATH"
 unset MANPATH
