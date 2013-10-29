@@ -68,7 +68,7 @@ install_home()
     pre_install_actions
 
     replace_all=false
-    local dest_dir="$HOME/staging"
+    local dest_dir="$HOME"
     [[ ! -d $dest_dir ]] && { echo "create $dest_dir; exiting"; exit 1; }
 
     local file
