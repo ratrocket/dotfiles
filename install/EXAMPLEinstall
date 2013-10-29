@@ -67,10 +67,9 @@ install_home()
 {
     pre_install_actions
 
+    replace_all=false
     local dest_dir="$HOME/staging"
     [[ ! -d $dest_dir ]] && { echo "create $dest_dir; exiting"; exit 1; }
-
-    replace_all=false
 
     local file
     for file in `dot_files`
@@ -79,25 +78,19 @@ install_home()
 	local dest_file_name=$(echo $base_name | sed 's/^DOT/./')
         local dest_file_path="$dest_dir/$dest_file_name"
 	local src_file_path="`lib_dir`/$base_name"
+	echo "====> $dest_file_path"
 	# set up for ln -s $src_file_path $dest_file_path
-	#echo $base_name
-	#echo $src_file_path
-	#echo $dest_file_path
-	#echo "----------------"
         install_file "$src_file_path" "$dest_file_path"
     done
-#
-#    post_install_actions
+
+    post_install_actions
 }
 
 # Install a file (with replacement confirmation)
 install_file()
 {
-    local file="$1"
-    local dest_file_path="$2"
-
-    echo "LINK will be: $dest_file_path"
-    echo "SRC will be:  $file"
+    local file="$1"           # the SRC (or target)
+    local dest_file_path="$2" # the LINK
 
     if [[ -e $dest_file_path ]]
     then
@@ -132,16 +125,15 @@ replace_file()
     link_file "$file" "$dest_file_path"
 }
 
-# args are in ln order: link_file REAL LINK
+# args are in ln order: link_file <REAL/SRC/TARGET> <LINK>
 link_file()
 {
     local file="$1"
     local dest_file_path="$2"
 
     echo "linking $dest_file_path"
-    echo "ln -s \"$file\" \"$dest_file_path\""
-echo "START HERE"
-    #ln -s "$file" "$dest_file_path"
+    #echo "ln -s \"$file\" \"$dest_file_path\""
+    ln -s "$file" "$dest_file_path"
 }
 
 #element_exists()
@@ -174,12 +166,11 @@ remove()
     # real one), but will leave the link.  Huh.)
     if [[ -d $file ]] && [[ ! -h $file ]]
     then
-	echo "DIR BUT NOT A LINK: rm -rf \"$file\""
-echo "START HERE"
-        #rm -rf "$file"
+	#echo "DIR BUT NOT A LINK: rm -rf \"$file\""
+        rm -rf "$file"
     else
-	echo "IT'S A LINK OR A FILE: rm -f \"$file\""
-        #rm -f "$file"
+	#echo "IT'S A LINK OR A FILE: rm -f \"$file\""
+        rm -f "$file"
     fi
 }
 
