@@ -9,9 +9,9 @@
 set ch=2	" Make command line two lines high
 set mousehide	" Hide the mouse when typing text
 
-" Make shift-insert work like in Xterm
-map <S-Insert> <MiddleMouse>
-map! <S-Insert> <MiddleMouse>
+"" Make shift-insert work like in Xterm
+"map <S-Insert> <MiddleMouse>
+"map! <S-Insert> <MiddleMouse>
 
 " Only do this for Vim version 5.0 and later.
 if version >= 500
@@ -23,19 +23,21 @@ if version >= 500
     syntax on
   endif
 
-  " Other favorites have been: desert torte wombat
-  colorscheme biogoo
+  "" Other favorites have been: desert torte wombat
+  "colorscheme biogoo
 
-  set enc=utf-8
+  " I think this is default
+  "set enc=utf-8
 
+  " I'm going to let gvim do what gvim wants for now.
   " Good for a large monitor.  h12 (below) is better for smaller monitors.
-  set antialias termencoding=macroman gfn=Monaco:h14
+  "set antialias termencoding=macroman gfn=Monaco:h14
   "set antialias termencoding=macroman gfn=Monaco:h12
 
   set cursorline " highlight line the cursor is on
 
-  " I never remember that I have this.
-  nmap  :set invnumber
+  "" I never remember that I have this.
+  "nmap  :set invnumber
 
   " disable the mouse
   set mouse=
