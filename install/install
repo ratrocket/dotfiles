@@ -3,7 +3,7 @@
 
 post_install_actions()
 {
-    true
+    link_bin_dir
 }
 
 pre_install_actions()
@@ -20,6 +20,16 @@ template_files()
 dot_files()
 {
     ls -d ../lib/DOT* | grep -v "\.template$"
+}
+
+lib_dir()
+{
+    ( cd "$(dirname "$0")" && pwd ) | sed 's_install$_lib_'
+}
+
+bin_dir()
+{
+    ( cd "$(dirname "$0")" && pwd ) | sed 's_install$_bin_'
 }
 
 ensure_generated_template_files_are_ignored()
@@ -57,9 +67,9 @@ generate_template_files()
     done
 }
 
-lib_dir()
+link_bin_dir()
 {
-    ( cd "$(dirname "$0")" && pwd ) | sed 's_install$_lib_'
+    true
 }
 
 # Install the dot files into user's home directory
