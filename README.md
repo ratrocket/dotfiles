@@ -1,14 +1,21 @@
 dotfiles
 --------
+### How
+
+Run `install` from inside the install subdirectory.
+
+Set `dest_dir` in install (in `install_home()`) to change install directory.
+$HOME is normal, but can alter for testing.
+
 ### Assumptions/etc.
 
-I use bash.
+bash
 
-I use vim (& gvim) + pathogen for plugin management.  There's a script
+vim (& gvim) + pathogen for plugin management.  There's a script
 (dotfiles/lib/DOTvim/bundle/install_bundles) to grab bundles.  I'm
 being lazy and *not* managing the bundles with git submodules.
 
-I use keychain (from the gentoo project... I think?) for key management.
+keychain (from the gentoo project... I think?) for key management.
 
 There's some simple templating in here (all written in bash) to put
 private information into dotfiles that need it.  The inspiration
