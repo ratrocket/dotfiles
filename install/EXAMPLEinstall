@@ -99,54 +99,50 @@ install_file()
     echo "LINK will be: $dest_file_path"
     echo "SRC will be:  $file"
 
-#    if [[ -e $dest_file_path ]] || \
-#       [[ -L $dest_file_path ]]		  # Can be a broken symlink
-#    then
-#        if [[ -e $dest_file_path ]] &&
-#           diff -q "$file" "$dest_file_path" > /dev/null
-#        then
-#            echo "identical $dest_file_path"
-#        elif $replace_all
-#        then
-#            replace_file "$file" "$dest_file_path"
-#        else
-#            read -p "overwrite ${dest_file_path}? [ynaq] "
-#            case $REPLY in
-#                'y') replace_file "$file" "$dest_file_path" ;;
-#                'q') exit 1 ;;
-#                'a') replace_all=true
-#                     replace_file "$file" "$dest_file_path" ;;
-#                *)   echo "skipping $dest_file_path" ;;
-#            esac
-#        fi
-#    else
-#        link_file "$file" "$dest_file_path"
-#    fi
+    if [[ -e $dest_file_path ]]
+    then
+        if diff -q "$file" "$dest_file_path" > /dev/null
+        then
+            echo "identical $dest_file_path"
+        elif $replace_all
+        then
+            replace_file "$file" "$dest_file_path"
+        else
+            read -p "overwrite ${dest_file_path}? [ynaq] "
+            case $REPLY in
+                'y') replace_file "$file" "$dest_file_path" ;;
+                'q') exit 1 ;;
+                'a') replace_all=true
+                     replace_file "$file" "$dest_file_path" ;;
+                *)   echo "skipping $dest_file_path" ;;
+            esac
+        fi
+    else
+        link_file "$file" "$dest_file_path"
+    fi
 }
 
-#replace_file()
-#{
-#    local file="$1"
-#    local dest_file_path="$2"
-#
-#    remove "$dest_file_path"
-#    link_file "$file" "$dest_file_path"
-#}
+# replace file ARG2 with link to ARG1
+replace_file()
+{
+    local file="$1"
+    local dest_file_path="$2"
 
-#link_file()
-#{
-#    local file="$1"
-#    local dest_file_path="$2"
-#
-#    if [[ $file =~ \.template$ ]]
-#    then
-#        echo "generating $dest_file_path"
-#        bash "$file" > "$dest_file_path"
-#    else
-#        echo "linking $dest_file_path"
-#        ln -s "`pwd`/$file" "$dest_file_path"
-#    fi
-#}
+    remove "$dest_file_path"
+    link_file "$file" "$dest_file_path"
+}
+
+# args are in ln order: link_file REAL LINK
+link_file()
+{
+    local file="$1"
+    local dest_file_path="$2"
+
+    echo "linking $dest_file_path"
+    echo "ln -s \"$file\" \"$dest_file_path\""
+echo "START HERE"
+    #ln -s "$file" "$dest_file_path"
+}
 
 #element_exists()
 #{
@@ -165,19 +161,27 @@ install_file()
 #    return 1  # false
 #}
 
-#remove()
-#{
-#    local file="$1"
-#
-#    # Don't recursively remove symbolic links to directories,
-#    # just real directories.
-#    if [[ -d $file ]] && [[ ! -h $file ]]
-#    then
-#        rm -rf "$file"
-#    else
-#        rm -f "$file"
-#    fi
-#}
+remove()
+{
+    local file="$1"
+
+    # Don't recursively remove symbolic links to directories,
+    # just real directories.  (This is, unfortunately, highly
+    # dependent on whether $file has a trailing slash.  If it
+    # doesn't have a trailing slash `rm -rf` is fine.  If it
+    # does have a trailing slash, `rm -rf` will empty out the
+    # directory the link points to, remove the directory (the
+    # real one), but will leave the link.  Huh.)
+    if [[ -d $file ]] && [[ ! -h $file ]]
+    then
+	echo "DIR BUT NOT A LINK: rm -rf \"$file\""
+echo "START HERE"
+        #rm -rf "$file"
+    else
+	echo "IT'S A LINK OR A FILE: rm -f \"$file\""
+        #rm -f "$file"
+    fi
+}
 
 #has_program()
 #{
