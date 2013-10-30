@@ -7,3 +7,8 @@ set show-all-if-ambiguous on
 
 # prompt is set in prompt_command function (which is slow, but fine)
 PROMPT_COMMAND=prompt_command
+
+if which rbenv > /dev/null
+then
+    eval "$(rbenv init -)"
+fi
