@@ -10,3 +10,9 @@ export GOPATH=$HOME/devel/go
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:$GOPATH/bin:/Users/sdf/bin"
 
 unset MANPATH
+
+if [[ -d /usr/local/plan9 ]]
+then
+	export PLAN9="/usr/local/plan9"
+	export PATH="$PATH:$PLAN9/bin"
+fi
