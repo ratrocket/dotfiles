@@ -62,6 +62,13 @@ endif
 setlocal comments=:#
 setlocal commentstring=#\ %s
 
+" SDF
+setlocal sw=2
+setlocal sts=2
+setlocal ts=8
+setlocal et
+" /SDF
+
 if !exists('g:ruby_version_paths')
   let g:ruby_version_paths = {}
 endif
