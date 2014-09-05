@@ -7,7 +7,7 @@ export PAGER="less -X"
 
 export GOPATH=$HOME/devel/go
 # ignore default $PATH set my own
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:$GOPATH/bin:/Users/sdf/bin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:$GOPATH/bin:/Users/sdf/bin:$GOPATH/go_appengine"
 
 unset MANPATH
 
