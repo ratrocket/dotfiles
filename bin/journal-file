@@ -1,0 +1,2 @@
+#!/bin/sh
+touch $(date +%F_%T | sed 's/://g')-$1
