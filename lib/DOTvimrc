@@ -12,6 +12,7 @@ set hlsearch
 " "normally" set as "set backspace=indent,eol,start"
 set backspace=indent
 syntax on
+"set cursorline
 
 " don't clear the screen on exit
 set t_ti= t_te=
@@ -44,3 +45,7 @@ autocmd BufRead,BufNewFile *.erb set filetype=eruby.html
 " buffer help (not really needed...)
 " cf. http://vim.wikia.com/wiki/Easier_buffer_switching
 "nnoremap <F5> :buffers<CR>:buffer<Space>
+
+" Use space for <Leader> (not comma like some fools!)
+let mapleader=" "
+noremap <Leader>n :noh

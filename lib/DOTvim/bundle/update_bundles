@@ -26,6 +26,7 @@ keeps = %w[
 # be home directory, could be a dotfiles repository)
 bundles_dir = File.join(File.dirname(__FILE__))
 
+# "No trash"?  Or "Not rash"?  Either works!
 notrash = ARGV.include?('--notrash')
 
 Dir.chdir(bundles_dir) do
