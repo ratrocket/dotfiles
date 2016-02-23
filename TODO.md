@@ -7,3 +7,5 @@ Remember to hit tab, I guess.)
 
 There's a path in the bash completion file that might need to be changed.
 I put a multiline "TODO" by it (it's near the top of the file).
+
+Change perms to user only for .netrc.

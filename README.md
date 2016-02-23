@@ -48,3 +48,18 @@ needing to rebuild).
 
 A gitignored directory, put private &/or local stuff in here.  I use it
 for generating dotfiles from templates.
+
+### OS X tips
+
+- Stop push notifaction daemon (for Facetime?):
+  `sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.apsd.plist`
+  (cf.  http://blog.nu42.com/2014/09/stop-your-mac-from-keeping-perpetual.html)
+
+- Stop CalendarAgent (I can't be using it...):
+  `launchctl unload -w /System/Library/LaunchAgents/com.apple.CalendarAgent.plist`
+  (cf. http://superuser.com/questions/490056/how-can-i-disable-the-calendar-agent-from-running-on-mac-os-x-lion)
+  (cf. http://www.dgkapps.com/blog/osx-tips/osx-tips-turn-off-disable-calendaragent-from-the-command-line/)
+
+  But, will this cause it to launch at startup?
+  11:18 ~/devel/dotfiles (master)$ launchctl list | grep -i cal
+  => 0 com.apple.CalendarAgentLauncher
