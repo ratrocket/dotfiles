@@ -57,3 +57,16 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
+
+" 2/26/16 learning some new things!
+
+" this is probably only good in the terminal, but I've pretty much
+" stopped using gvim anyway
+highlight Search ctermbg=white ctermfg=black cterm=underline,bold
+
+" trying rnu again, and seeing if this cursorline is any better than the
+" default (or if it matters at all)
+set number relativenumber
+set cursorline
+highlight cursorline cterm=none
+highlight cursorlinenr ctermfg=red
