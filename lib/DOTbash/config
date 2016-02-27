@@ -1,6 +1,9 @@
 # Enable the builtin emacs(1) command line editor in sh(1),
 # e.g. C-a -> beginning-of-line.
-set -o emacs
+#set -o emacs
+# Actually, let's do vi mode!  Also set in .inputrc, set here for
+# completeness
+set -o vi
 set -o ignoreeof
 set -o noclobber
 set show-all-if-ambiguous on

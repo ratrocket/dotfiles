@@ -42,7 +42,7 @@ the plumbing for dotfiles)
 * dotfiles/packages
 
 Misnamed directory to hold lists of installed packages (in case of
-needing to rebuild).
+needing to rebuild).  Apparently things like the output of `brew list`.
 
 * dotfiles/ignore
 

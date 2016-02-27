@@ -1,6 +1,7 @@
 # this is the wrong syntax for inputrc; this is from bashrc....
 #bind '"\M-[A":history-search-backward'
 #bind '"\M-[B":history-search-forward'
+set editing-mode vi
 
 set show-all-if-ambiguous on
 set bell-style none
@@ -16,3 +17,48 @@ set output-meta on
 
 "\e[A": history-search-backward
 "\e[B": history-search-forward
+
+$if mode=vi
+# vi mode (2/27/16)
+#
+# references
+# https://gist.github.com/ethagnawl/86a0284c990196ae31b7
+# https://wiki.archlinux.org/index.php/Readline
+# http://jasonwryan.com/blog/2011/12/01/readline/
+# http://vim.wikia.com/wiki/Use_vi_shortcuts_in_terminal
+#
+# show-mode-in-prompt requires >= Bash 4.3
+
+# Prompt prefixed with a `+` in insert mode and a `:` in command mode.
+# NB: will not work with a PS1 containing a newline character
+set show-mode-in-prompt on
+
+# keymaps for command mode (ie, after hitting ESC)
+set keymap vi-command
+# These don't *quite* do what I want, but I think I can work with it.
+# Because the cursor "backs up" one place when you enter command mode,
+# you'll be completing on different (one character shorter) prefix than
+# if you just hit up arrow in insert mode.  So if you're looking for the
+# last grep command and type "grESCk", the cursor is on the 'r' and bash
+# is only looking for previous commands *up to* (but not incl.) the 'r',
+# so you'll get (e.g.) git commands in your search, too.  The workaround
+# for this is to type "grSPACE ESCk".  Then you will get previous grep
+# commands but not previous git commands.
+#
+# I'll see if I even use this!
+"k": history-search-backward
+"j": history-search-forward
+# Insert the arguments from the last command
+"p": "i !!*\r"
+Control-l: clear-screen
+
+# keymaps for insert mode (ie, typing commands)
+set keymap vi-insert
+Control-l: clear-screen
+# (from wikia reference above) These are needed because the command mode
+# bindings of the single letters wipes their insert mode function, too.
+"k": self-insert
+"j": self-insert
+"p": self-insert
+
+$endif
