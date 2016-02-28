@@ -49,6 +49,7 @@ autocmd BufRead,BufNewFile *.erb set filetype=eruby.html
 " Use space for <Leader> (not comma like some fools!)
 let mapleader=" "
 noremap <Leader>n :noh
+noremap <Leader>z ZZ
 
 " On the Kinesis Advantage I keep accidentally hitting the up and down
 " arrows in insert mode, so I need to disable them.
