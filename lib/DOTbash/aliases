@@ -6,7 +6,7 @@ alias sl=ls
 alias less='less -X'
 alias m='less -X'
 
-alias pu='pushd-v' # this & next are shell functions defined below
+alias pu='pushd-v' # this & next are shell functions from file 'funcs'
 alias po='popd-v'
 alias d='dirs -v'
 
@@ -24,6 +24,13 @@ alias scp='scp -p' # preserve file attributes
 
 # Hmm.
 #alias git-unpushed-changes="git log origin/master..HEAD"
+
+#
+# Automate the system
+#
+
+# via http://stackoverflow.com/a/4505211
+alias lks='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine'
 
 #
 # Csh compatability:
