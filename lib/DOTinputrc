@@ -33,6 +33,7 @@ $if mode=vi
 # NB: will not work with a PS1 containing a newline character
 set show-mode-in-prompt on
 
+#####
 # keymaps for command mode (ie, after hitting ESC)
 set keymap vi-command
 # These don't *quite* do what I want, but I think I can work with it.
@@ -52,9 +53,14 @@ set keymap vi-command
 "p": "i !!*\r"
 Control-l: clear-screen
 
+#####
 # keymaps for insert mode (ie, typing commands)
 set keymap vi-insert
 Control-l: clear-screen
+# muscle memory is too ingrained for these two!  Let's see if this
+# remapping works.
+Control-p: history-search-backward
+Control-n: history-search-forward
 # (from wikia reference above) These are needed because the command mode
 # bindings of the single letters wipes their insert mode function, too.
 "k": self-insert
