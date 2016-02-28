@@ -15,3 +15,9 @@ if which rbenv > /dev/null
 then
     eval "$(rbenv init -)"
 fi
+
+# Great "trick" for "safer" ("ha ha") use of "!"-type history
+# substitution.  Eg, type "!!<spc>" and the "!!" will expand into the
+# actual last command.
+# via http://unix.stackexchange.com/a/147572
+bind Space:magic-space
