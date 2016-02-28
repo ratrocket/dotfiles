@@ -32,6 +32,9 @@ alias scp='scp -p' # preserve file attributes
 # via http://stackoverflow.com/a/4505211
 alias lks='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine'
 
+# via http://stackoverflow.com/a/14127035 + other comments on that page
+alias ..g='cd "$(git rev-parse --show-toplevel)"'
+
 #
 # Csh compatability:
 #
