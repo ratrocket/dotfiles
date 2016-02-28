@@ -16,6 +16,8 @@ cat <<EOF
 	s = "status -sb"
 	d = diff
 	f = "fetch origin"
+	sno = "status -sb --untracked=no"
+	root = !pwd
 [color]
 	diff = auto
 	status = auto
