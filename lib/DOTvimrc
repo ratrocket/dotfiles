@@ -65,9 +65,24 @@ inoremap <right> <nop>
 " stopped using gvim anyway
 highlight Search ctermbg=white ctermfg=black cterm=underline,bold
 
-" trying rnu again, and seeing if this cursorline is any better than the
-" default (or if it matters at all)
+" trying rnu again
 set number relativenumber
+" this highlights the number gutter differently
+highlight LineNr ctermfg=black ctermbg=grey
+" use number gutter for long lines
+set cpoptions+=n
+" reclaim a little bit of space from the number gutter; 3 is the minimum
+" (I'd like to see what getting rid of the blank space between the
+" number and the file contents looks like -- with the
+" differently-highlighted gutter, it could work...)
+"
+" this & previous partially via
+" http://vim.wikia.com/wiki/Display_line_numbers
+" (potentially more good tips to harvest on that page, actually!)
+set numberwidth=3
+
+" see if this cursorline is any better than the default (or if it
+" matters at all)
 set cursorline
 highlight cursorline cterm=none
 highlight cursorlinenr ctermfg=red
