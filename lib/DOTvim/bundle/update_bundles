@@ -20,6 +20,10 @@ git_bundles = [
   "git://github.com/jnwhiteh/vim-golang.git",
   "git://github.com/godlygeek/tabular.git",
   "git://github.com/tpope/vim-repeat.git",
+  "git://github.com/tpope/vim-endwise.git",
+  "git://github.com/tpope/vim-ragtag.git",
+  "git://github.com/tpope/vim-unimpaired.git",
+  "git://github.com/tpope/vim-commentary.git",
 ]
 
 keeps = %w[
