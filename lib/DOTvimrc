@@ -42,14 +42,30 @@ let g:slime_target = "tmux"
 " indenting isn't *quite* right, but fine for now
 autocmd BufRead,BufNewFile *.erb set filetype=eruby.html
 
-" buffer help (not really needed...)
-" cf. http://vim.wikia.com/wiki/Easier_buffer_switching
-"nnoremap <F5> :buffers<CR>:buffer<Space>
-
 " Use space for <Leader> (not comma like some fools!)
 let mapleader=" "
+
+" conveniences
 noremap <Leader>n :noh
+nnoremap <Leader>g gq}
+
+" saving, closing
+nnoremap <Leader>w :w
+" try 's', too.  It's close to 'w', same finger, but on home row
+nnoremap <Leader>s :w
 noremap <Leader>z ZZ
+
+" buffer "management"
+" http://vim.wikia.com/wiki/Easier_buffer_switching suggests:
+"nnoremap <F5> :buffers<CR>:buffer<Space>
+" I decided to use it with Leader
+nnoremap <Leader>k :buffers<CR>:buffer<Space>
+nnoremap <Leader>l :ls
+nnoremap <Leader>b :buffer<Space>
+nnoremap <Leader>v :b#
+
+" trying an alternate escape
+inoremap kj <ESC>
 
 " On the Kinesis Advantage I keep accidentally hitting the up and down
 " arrows in insert mode, so I need to disable them.
