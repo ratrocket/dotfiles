@@ -2,6 +2,7 @@ alias ls='ls -F'
 alias ll='ls -lF'
 alias la='ls -a'
 alias sl=ls
+alias l1='ls -1'
 
 alias less='less -X'
 alias m='less -X'
