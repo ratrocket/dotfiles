@@ -9,6 +9,12 @@ export GOPATH=$HOME/devel/go
 # ignore default $PATH set my own
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:$GOPATH/bin:/Users/sdf/bin:$GOPATH/go_appengine"
 
+# mozart programming system
+if [[ -d $HOME/Applications/Mozart.app/Contents/Resources/bin ]]
+then
+	export PATH="$PATH:$HOME/Applications/Mozart.app/Contents/Resources/bin"
+fi
+
 unset MANPATH
 
 if [[ -d /usr/local/plan9 ]]

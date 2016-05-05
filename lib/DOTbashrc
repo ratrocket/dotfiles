@@ -8,4 +8,7 @@
 
 # move this somewhere?
 # also, check for 'brew' first?  And that completion file exists?
-. `brew --prefix`/Library/Contributions/brew_bash_completion.sh
+#. `brew --prefix`/Library/Contributions/brew_bash_completion.sh
+# update 5/2/16 after a `brew update`
+# info: http://stackoverflow.com/a/36462115
+. `brew --prefix`/etc/bash_completion.d/brew
