@@ -36,6 +36,9 @@ nnoremap qd :silent! normal mpea"<Esc>bi"<Esc>`pl
 
 au FileType crontab set nobackup nowritebackup
 let g:slime_target = "tmux"
+" workaround for this tmux/slime issue:
+" https://github.com/jpalardy/vim-slime/issues/91
+let g:slime_paste_file = "$HOME/.slime_paste"
 
 " get .html.erb files to be somewhat correct 7/20/2012
 " via: http://stackoverflow.com/q/4764507
