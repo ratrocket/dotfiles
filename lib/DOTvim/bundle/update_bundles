@@ -26,6 +26,7 @@ git_bundles = [
   "git://github.com/tpope/vim-unimpaired.git",
   "git://github.com/tpope/vim-commentary.git",
   "git@github.com:Procrat/oz.vim.git",
+  "git@github.com:elixir-lang/vim-elixir.git",
 ]
 
 keeps = %w[
