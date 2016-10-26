@@ -17,10 +17,8 @@ git_bundles = [
   "git://github.com/pangloss/vim-javascript.git",
   "git://github.com/vim-scripts/matchit.zip.git",
   "git://github.com/jpalardy/vim-slime.git",
-  # See note in DATA.
-  #"git://github.com/jnwhiteh/vim-golang.git",
   "git@github.com:fatih/vim-go.git",
-  "git://github.com/godlygeek/tabular.git",
+  "git://github.com/godlygeek/tabular.git",  # consider replacing this with "vim-lion"
   "git://github.com/tpope/vim-repeat.git",
   "git://github.com/tpope/vim-endwise.git",
   "git://github.com/tpope/vim-ragtag.git",
@@ -28,6 +26,7 @@ git_bundles = [
   "git://github.com/tpope/vim-commentary.git",
   "git@github.com:Procrat/oz.vim.git",
   "git@github.com:elixir-lang/vim-elixir.git",
+  "git@github.com:AndrewRadev/splitjoin.vim.git",
 ]
 
 keeps = %w[
@@ -112,16 +111,3 @@ vim_org_scripts.each do |name, script_id, script_type|
     %x(unzip -d #{name} #{local_file})
   end
 end
-
-
-
-# From old vim-golang repo:
-
-## Vim plugins have moved
-
-The vim plugins have been removed from the Go repository along with all other
-editor plugins. Please visit [The Go Wiki][1] for a current list of plugins. I
-have personally moved over to the [vim-go][2] suite of plugins.
-
-[1]: https://code.google.com/p/go-wiki/wiki/IDEsAndTextEditorPlugins
-[2]: https://github.com/fatih/vim-go

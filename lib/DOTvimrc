@@ -105,3 +105,16 @@ set numberwidth=3
 set cursorline
 highlight cursorline cterm=none
 highlight cursorlinenr ctermfg=red
+
+" golang stuff from vim-go-tutorial
+" https://github.com/fatih/vim-go-tutorial
+"
+" NB: The tutorial has some <leader> shortcuts that I'm not going to add
+" at this time.  (Search in vim-go-tutorial's README for `autocmd` to
+" find them)
+set autowrite
+" Make all lists quickfix lists (as opposed to mix of quickfix and
+" location lists)
+let g:go_list_type = "quickfix"
+let g:go_fmt_command = "goimports"
+autocmd FileType go nmap <Leader>i :GoInfo
