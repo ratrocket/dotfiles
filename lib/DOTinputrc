@@ -27,11 +27,20 @@ $if mode=vi
 # http://jasonwryan.com/blog/2011/12/01/readline/
 # http://vim.wikia.com/wiki/Use_vi_shortcuts_in_terminal
 #
+# these are changes having to do with setting the ins/cmd indicators
+# that have apparently been merged into mainline bash/readline(?).
+# https://bbs.archlinux.org/viewtopic.php?id=204408
+# https://github.com/calid/bash
+#
 # show-mode-in-prompt requires >= Bash 4.3
 
 # Prompt prefixed with a `+` in insert mode and a `:` in command mode.
 # NB: will not work with a PS1 containing a newline character
 set show-mode-in-prompt on
+# To get the old behavior (+/:) uncomment.  I'm going with the default
+# (ins)/(cmd) for a while.
+#set vi-ins-mode-string +
+#set vi-cmd-mode-string :
 
 #####
 # keymaps for command mode (ie, after hitting ESC)
