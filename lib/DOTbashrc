@@ -3,12 +3,25 @@
 [ -f $HOME/.bash/config ] && . $HOME/.bash/config
 [ -f $HOME/.bash/aliases ] && . $HOME/.bash/aliases
 [ -f $HOME/.bash/completion ] && . $HOME/.bash/completion
-[ -f $HOME/.git-completion.sh ] && . $HOME/.git-completion.sh
 [ -f $HOME/.bash/history ] && . $HOME/.bash/history
 
-# move this somewhere?
+# move this somewhere?  It doesn't really seem like this file is the
+# appropriate place for these next bits of code...
+
+# brew completions
 # also, check for 'brew' first?  And that completion file exists?
 #. `brew --prefix`/Library/Contributions/brew_bash_completion.sh
 # update 5/2/16 after a `brew update`
 # info: http://stackoverflow.com/a/36462115
-. `brew --prefix`/etc/bash_completion.d/brew
+brewcomp=`brew --prefix`/etc/bash_completion.d
+[ -f $brewcomp/brew ] && . $brewcomp/brew
+[ -f $brewcomp/tmux ] && . $brewcomp/tmux
+#[ -f $brewcomp/hugo.sh ] && . $brewcomp/hugo.sh
+
+# local completions
+localcomp=$HOME/.bash/local-completions
+if [ -d $localcomp ]; then
+	for f in $( find $localcomp -type f -depth 1 -print ); do
+		. $f
+	done
+fi
