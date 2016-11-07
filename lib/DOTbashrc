@@ -15,7 +15,9 @@
 # info: http://stackoverflow.com/a/36462115
 brewcomp=`brew --prefix`/etc/bash_completion.d
 [ -f $brewcomp/brew ] && . $brewcomp/brew
-[ -f $brewcomp/tmux ] && . $brewcomp/tmux
+# I think I prefer the tmux completion I got off the internet somewhere.
+#[ -f $brewcomp/tmux ] && . $brewcomp/tmux
+# hugo completions didn't seem to work... and who cares.
 #[ -f $brewcomp/hugo.sh ] && . $brewcomp/hugo.sh
 
 # local completions
