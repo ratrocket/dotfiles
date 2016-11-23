@@ -39,6 +39,11 @@ alias ..g='cd "$(git rev-parse --show-toplevel)"'
 alias ..='cd ..'
 alias 2..='cd ../..'
 
+# some help for working with tmux on macOS
+# TODO guard this with "if on macOS && have command reattach-to-user-namespace
+alias rpbcopy="reattach-to-user-namespace pbcopy"
+alias rpbpaste="reattach-to-user-namespace pbpaste"
+
 #
 # Csh compatability:
 #
