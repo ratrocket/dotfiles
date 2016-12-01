@@ -1,0 +1,10 @@
+# These are from trivium blog (essentially...)
+# http://chneukirchen.org/blog/archive/2015/02/six-hacks-for-less-1.html
+
+
+#command
+\kd forw-line-force
+j forw-line-force
+D noaction /\^diff|commit\n
+
+# D noaction j/\^diff|commit|From \n\eu
