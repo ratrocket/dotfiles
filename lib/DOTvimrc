@@ -57,6 +57,7 @@ nnoremap <Leader>w :w
 " try 's', too.  It's close to 'w', same finger, but on home row
 nnoremap <Leader>s :w
 noremap <Leader>z ZZ
+nnoremap <Leader>m :mksession! \| qa
 
 " buffer "management"
 " http://vim.wikia.com/wiki/Easier_buffer_switching suggests:
