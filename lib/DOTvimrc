@@ -57,6 +57,7 @@ nnoremap <Leader>w :w
 " try 's', too.  It's close to 'w', same finger, but on home row
 nnoremap <Leader>s :w
 noremap <Leader>z ZZ
+" for info on the '|' aka <bar>: http://stackoverflow.com/a/3249303
 nnoremap <Leader>m :mksession! \| qa
 
 " buffer "management"
