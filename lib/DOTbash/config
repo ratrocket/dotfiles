@@ -21,3 +21,9 @@ fi
 # actual last command.
 # via http://unix.stackexchange.com/a/147572
 bind Space:magic-space
+
+# trying this 'z' thing (like autojump, also fasd and 'v' are related)
+if [[ -d $HOME/devel/cmdline-productivity/z ]]
+then
+	. $HOME/devel/cmdline-productivity/z/z.sh
+fi
