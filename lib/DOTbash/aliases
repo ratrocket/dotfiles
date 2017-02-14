@@ -44,6 +44,9 @@ alias 2..='cd ../..'
 alias rpbcopy="reattach-to-user-namespace pbcopy"
 alias rpbpaste="reattach-to-user-namespace pbpaste"
 
+# measure 80 columns in the terminal
+alias gimme80="jot 40 20 | rs -g0"
+
 alias lc="wc -l"
 
 #
