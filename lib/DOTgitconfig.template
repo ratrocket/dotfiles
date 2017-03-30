@@ -18,6 +18,7 @@ cat <<EOF
 	f = "fetch origin"
 	sno = "status -sb --untracked=no"
 	root = !pwd
+	lfm = "ls-files --modified"
 [color]
 	diff = auto
 	status = auto
