@@ -51,6 +51,8 @@ let mapleader=" "
 " conveniences
 noremap <Leader>n :noh
 nnoremap <Leader>g gq}
+nnoremap <Leader>o :only
+nnoremap <Leader>v :vsplit
 
 " saving, closing
 nnoremap <Leader>w :w
@@ -67,7 +69,7 @@ nnoremap <Leader>m :mksession! \| qa
 nnoremap <Leader>k :buffers<CR>:buffer<Space>
 nnoremap <Leader>l :ls
 nnoremap <Leader>b :buffer<Space>
-nnoremap <Leader>v :b#
+" nnoremap <Leader>v :b#
 
 " trying an alternate escape
 inoremap kj <ESC>
