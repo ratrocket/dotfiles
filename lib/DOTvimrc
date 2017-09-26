@@ -28,9 +28,9 @@ nmap <F2> :.w !pbcopy<CR><CR>
 vmap <F2> :w !pbcopy<CR><CR>
 
 " 'quote' a word
-nnoremap qw :silent! normal mpea'<Esc>bi'<Esc>`pl
+" nnoremap qw :silent! normal mpea'<Esc>bi'<Esc>`pl
 " "quote" a word
-nnoremap qd :silent! normal mpea"<Esc>bi"<Esc>`pl
+" nnoremap qd :silent! normal mpea"<Esc>bi"<Esc>`pl
 " remove quotes from a word
 "nnoremap wq :silent! normal mpeld bhd `ph<CR>
 
@@ -55,7 +55,7 @@ nnoremap <Leader>o :only
 nnoremap <Leader>v :vsplit
 
 " saving, closing
-nnoremap <Leader>w :w
+" nnoremap <Leader>w :w
 " try 's', too.  It's close to 'w', same finger, but on home row
 nnoremap <Leader>s :w
 noremap <Leader>z ZZ
@@ -122,3 +122,10 @@ set autowrite
 let g:go_list_type = "quickfix"
 let g:go_fmt_command = "goimports"
 autocmd FileType go nmap <Leader>i :GoInfo
+
+" vim has gotten super slow on ruby files (like ~500 line mycelium
+" order.rb).  I have two sources saying to set these:
+" https://github.com/fatih/vim-go/issues/145#issuecomment-52092928
+" https://stackoverflow.com/a/16920294
+syntax sync minlines=256
+set re=1
